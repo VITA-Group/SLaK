@@ -1,6 +1,6 @@
 #  SLaK
 
-This is the official PyTorch implementation of **SLaK**, from the NeurIPS submission: 
+This is the official PyTorch implementation of **SLaK**, from the NeurIPS 2022 submission: 
 
 More ConvNets in the 2020s: Scaling up Kernels Beyond 51 x 51 using Sparsity. 
 
