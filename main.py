@@ -21,7 +21,6 @@ from pathlib import Path
 from timm.data.mixup import Mixup
 from timm.models import create_model
 from timm.loss import LabelSmoothingCrossEntropy, SoftTargetCrossEntropy
-# from timm.utils import ModelEma
 from model_sema import ModelEma
 from optim_factory import create_optimizer, LayerDecayValueAssigner
 from datasets import build_dataset
@@ -31,9 +30,7 @@ import sparse_core
 from sparse_core import Masking, CosineDecay
 
 import utils
-import models.convnext
-import models.convnext_dual_Rep
-import models.convnext_isotropic
+import models.SLaK
 
 def kernel_type(strings):
     strings = strings.replace("(", "").replace(")", "")
