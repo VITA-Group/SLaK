@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH --job-name=Protein_base
+#SBATCH -p gpu
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=1
+#SBATCH --gpus-per-node=4
+#SBATCH --gpus=4
+#SBATCH -t 1-00:00:00
+#SBATCH --exclusive
+#SBATCH --cpus-per-task=40
+#SBATCH -o Protein_base.out
+
+model=SLaK_base
+python -m torch.distributed.launch --nproc_per_node=16 main.py  \
+--sparse --width-factor 1.3 -u 4000 --init-density 0.5 --method DST --sparse-init ERP_plus \
+--LoRA True --epochs 300 --model $model --drop_path 0.5 --batch_size 32 --lr 4e-3 --update_freq 8 --model_ema true \
+--model_ema_eval true --data_path $IMAGENET_PATH --num_workers 40 --kernel-size 51 49 47 13 5 \
+--output_dir Results/$model/w1.3_s0.5_ERKP/300epochs/
+
+
+source deactivate
