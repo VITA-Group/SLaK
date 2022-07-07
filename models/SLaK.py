@@ -79,8 +79,8 @@ class ReparamLargeKernelConv(nn.Module):
             else:
                 self.lkb_origin = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size,
                                       stride=stride, padding=padding, dilation=1, groups=groups)
+
             if (small_kernel is not None) and small_kernel < kernel_size:
-                # assert small_kernel <= kernel_size, 'The kernel size for re-param cannot be larger than the large kernel!'
                 self.small_conv = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=small_kernel,
                                              stride=stride, padding=small_kernel//2, groups=groups, dilation=1)
 
@@ -122,7 +122,7 @@ class ReparamLargeKernelConv(nn.Module):
 
 
 class Block(nn.Module):
-    r""" ConvNeXt Block. There are two equivalent implementations:
+    r""" SLaK Block. There are two equivalent implementations:
     (1) DwConv -> LayerNorm (channels_first) -> 1x1 Conv -> GELU -> 1x1 Conv; all in (N, C, H, W)
     (2) DwConv -> Permute to (N, H, W, C); LayerNorm (channels_last) -> Linear -> GELU -> Linear; Permute back
     We use (2) as we find it slightly faster in PyTorch
@@ -260,20 +260,17 @@ class LayerNorm(nn.Module):
 
 
 model_urls = {
-    "convnext_tiny_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_tiny_1k_224_ema.pth",
-    "convnext_small_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_small_1k_224_ema.pth",
-    "convnext_base_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_base_1k_224_ema.pth",
-    "convnext_large_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_large_1k_224_ema.pth",
-    "convnext_base_22k": "https://dl.fbaipublicfiles.com/convnext/convnext_base_22k_224.pth",
-    "convnext_large_22k": "https://dl.fbaipublicfiles.com/convnext/convnext_large_22k_224.pth",
-    "convnext_xlarge_22k": "https://dl.fbaipublicfiles.com/convnext/convnext_xlarge_22k_224.pth",
+    "slak_tiny_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_tiny_1k_224_ema.pth",
+    "slak_small_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_small_1k_224_ema.pth",
+    "slak_base_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_base_1k_224_ema.pth",
+    "slak_large_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_large_1k_224_ema.pth",
 }
 
 @register_model
 def SLaK_tiny(pretrained=False, **kwargs):
     model = SLaK(depths=[3, 3, 9, 3], dims=[96, 192, 384, 768], **kwargs)
     if pretrained:
-        url = model_urls['convnext_tiny_1k']
+        url = model_urls['slak_tiny_1k']
         checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
         model.load_state_dict(checkpoint["model"])
     return model
@@ -282,16 +279,16 @@ def SLaK_tiny(pretrained=False, **kwargs):
 def SLaK_small(pretrained=False, **kwargs):
     model = SLaK(depths=[3, 3, 27, 3], dims=[96, 192, 384, 768], **kwargs)
     if pretrained:
-        url = model_urls['convnext_small_1k']
+        url = model_urls['slak_small_1k']
         checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu")
         model.load_state_dict(checkpoint["model"])
     return model
 
 @register_model
-def SLaK__base(pretrained=False, in_22k=False, **kwargs):
+def SLaK_base(pretrained=False, in_22k=False, **kwargs):
     model = SLaK(depths=[3, 3, 27, 3], dims=[128, 256, 512, 1024], **kwargs)
     if pretrained:
-        url = model_urls['convnext_base_22k'] if in_22k else model_urls['convnext_base_1k']
+        url = model_urls['slak_base_22k'] if in_22k else model_urls['slak_base_1k']
         checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu")
         model.load_state_dict(checkpoint["model"])
     return model
@@ -300,17 +297,9 @@ def SLaK__base(pretrained=False, in_22k=False, **kwargs):
 def SLaK_large(pretrained=False, in_22k=False, **kwargs):
     model = SLaK(depths=[3, 3, 27, 3], dims=[192, 384, 768, 1536], **kwargs)
     if pretrained:
-        url = model_urls['convnext_large_22k'] if in_22k else model_urls['convnext_large_1k']
+        url = model_urls['slak_large_22k'] if in_22k else model_urls['slak_large_1k']
         checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu")
         model.load_state_dict(checkpoint["model"])
     return model
 
-@register_model
-def SLaK_xlarge(pretrained=False, in_22k=False, **kwargs):
-    model = SLaK(depths=[3, 3, 27, 3], dims=[256, 512, 1024, 2048], **kwargs)
-    if pretrained:
-        assert in_22k, "only ImageNet-22K pre-trained ConvNeXt-XL is available; please set in_22k=True"
-        url = model_urls['convnext_xlarge_22k']
-        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu")
-        model.load_state_dict(checkpoint["model"])
-    return model
+

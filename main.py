@@ -51,7 +51,7 @@ def str2bool(v):
         raise argparse.ArgumentTypeError('Boolean value expected.')
 
 def get_args_parser():
-    parser = argparse.ArgumentParser('ConvNeXt training and evaluation script for image classification', add_help=False)
+    parser = argparse.ArgumentParser('SLaK training and evaluation script for image classification', add_help=False)
     parser.add_argument('--batch_size', default=64, type=int,
                         help='Per GPU batch size')
     parser.add_argument('--epochs', default=300, type=int)
@@ -59,7 +59,7 @@ def get_args_parser():
                         help='gradient accumulation steps')
 
     # Model parameters
-    parser.add_argument('--model', default='convnext_tiny', type=str, metavar='MODEL',
+    parser.add_argument('--model', default='SLaK_tiny', type=str, metavar='MODEL',
                         help='Name of model to train')
     parser.add_argument('--drop_path', type=float, default=0, metavar='PCT',
                         help='Drop path rate (default: 0.0)')
@@ -198,7 +198,7 @@ def get_args_parser():
     # Weights and Biases arguments
     parser.add_argument('--enable_wandb', type=str2bool, default=False,
                         help="enable logging to Weights and Biases")
-    parser.add_argument('--project', default='convnext', type=str,
+    parser.add_argument('--project', default='SLaK', type=str,
                         help="The name of the W&B project where you're sending the new run.")
     parser.add_argument('--wandb_ckpt', type=str2bool, default=False,
                         help="Save model checkpoints as W&B Artifacts.")
@@ -359,9 +359,9 @@ def main(args):
     print("Number of training steps per epoch = %d" % num_training_steps_per_epoch)
 
     if args.layer_decay < 1.0 or args.layer_decay > 1.0:
-        num_layers = 12 # convnext layers divided into 12 parts, each with a different decayed lr value.
-        assert args.model in ['convnext_small', 'convnext_base', 'convnext_large', 'convnext_xlarge'], \
-             "Layer Decay impl only supports convnext_small/base/large/xlarge"
+        num_layers = 12 # SLak layers divided into 12 parts, each with a different decayed lr value.
+        assert args.model in ['SLaK_tiny', 'SLaK_small', 'SLaK_base', 'SLaK_large'], \
+             "Layer Decay impl only supports SLaK_small/base/large/xlarge"
         assigner = LayerDecayValueAssigner(list(args.layer_decay ** (num_layers + 1 - i) for i in range(num_layers + 2)))
     else:
         assigner = None
@@ -512,7 +512,7 @@ def main(args):
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser('ConvNeXt training and evaluation script', parents=[get_args_parser()])
+    parser = argparse.ArgumentParser('SLaK training and evaluation script', parents=[get_args_parser()])
     args = parser.parse_args()
     if args.output_dir:
         Path(args.output_dir).mkdir(parents=True, exist_ok=True)
