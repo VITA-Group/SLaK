@@ -1,8 +1,16 @@
-#  SLaK
+#  More ConvNets in the 2020s: Scaling up Kernels Beyond 51 × 51 using Sparsity
 
-This is the official PyTorch implementation of **SLaK**, from the NeurIPS 2022 submission: 
+Official PyTorch implementation of **SLaK**, from the following paper: 
 
 More ConvNets in the 2020s: Scaling up Kernels Beyond 51 x 51 using Sparsity. 
+
+[Shiwei Liu](https://shiweiliuiiiiiii.github.io/), [Tianlong Chen](https://tianlong-chen.github.io/about/), [Xiaohan Chen](http://www.xiaohanchen.com/), [Xuxi Chen](https://xxchen.site/), Qiao Xiao, Boqian Wu, [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Decebal Mocanu](https://people.utwente.nl/d.c.mocanu), [Zhangyang Wang](https://vita-group.github.io/)\
+Eindhoven University of Technology, University of Texas at Austin, University of Twente
+
+--- 
+
+
+
 
 The code is tested used CUDA 11.3.1, cudnn 8.2.0, PyTorch 1.10.0 with A100 GPUs.
 
