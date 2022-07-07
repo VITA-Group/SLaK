@@ -204,20 +204,21 @@ def get_args_parser():
                         help="Save model checkpoints as W&B Artifacts.")
 
     # large kernel
-    parser.add_argument('--sparse', action='store_true', help='Enable sparse mode. Default: False.')
-    parser.add_argument('--growth', type=str, default='gradient', help='Growth mode. Choose from: momentum, random, random_unfired, and momentum_neuron.')
+    parser.add_argument('--Decom', type=str2bool, default=False, help='Enabling kernel decomposition')
+    parser.add_argument('--width-factor', type=float, default=1, help='set the width factor of the model')
+    parser.add_argument('--sparse', action='store_true', help='Enable sparse model. Default: False.')
+    parser.add_argument('--kernel-size', nargs="*", type=int, default = [51,49,47,13,5], help='kernel size of conv [stage1, stage2, stage3, stage4, N]')
+    parser.add_argument('--growth', type=str, default='gradient', help='Growth mode. Choose from: momentum, random, gradient.')
     parser.add_argument('--prune', type=str, default='magnitude', help='Prune mode / pruning mode. Choose from: magnitude, SET.')
     parser.add_argument('--redistribution', type=str, default='none', help='Redistribution mode. Choose from: momentum, magnitude, nonzeros, or none.')
     parser.add_argument('--prune_rate', type=float, default=0.3, help='The pruning rate / prune rate.')
-    parser.add_argument('--sparsity', type=float, default=0.4, help='The density of the overall sparse network.')
+    parser.add_argument('--sparsity', type=float, default=0.4, help='The sparsity of the overall sparse network.')
     parser.add_argument('--verbose', action='store_true', help='Prints verbose status of pruning/growth algorithms.')
-    parser.add_argument('--fix', action='store_true', help='Fix topology during training. Default: True.')
-    parser.add_argument('--sparse_init', type=str, default='ERK', help='sparse initialization')
-    parser.add_argument('-u', '--update-frequency', type=int, default=2500, metavar='N', help='how many iterations to train between mask update')
+    parser.add_argument('--fix', action='store_true', help='Fix sparse model during training i.e., no weight adaptation.')
+    parser.add_argument('--sparse_init', type=str, default='snip', help='layer-wise sparsity ratio')
+    parser.add_argument('-u', '--update-frequency', type=int, default=100, metavar='N', help='how many iterations to adapt weights')
     parser.add_argument('--only-L', action='store_true', help='only sparsify large kernels.')
-    parser.add_argument('--kernel-size', nargs="*", type=int, default = [51,49,47,13,5], help='kernel size of conv [stage1, stage2, stage3, stage4, N]')
-    parser.add_argument('--width-factor', type=float, default=1, help='set the width factor of the model')
-    parser.add_argument('--Decom', type=str2bool, default=False, help='Enabling low rank path')
+
 
     return parser
 
