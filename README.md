@@ -121,7 +121,7 @@ The released PyTorch training script is based on the code of [ConvNeXt](https://
 This project is released under the MIT license.
 
 ## Contact
-s.liu3@tue.nl
+Shiwei Liu: s.liu3@tue.nl
 
 Homepage: https://shiweiliuiiiiiii.github.io/
 
