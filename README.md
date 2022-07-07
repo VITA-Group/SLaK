@@ -119,3 +119,30 @@ The released PyTorch training script is based on the code of [ConvNeXt](https://
 ## License
 This project is released under the MIT license.
 
+## Contact
+s.liu3@tue.nl
+
+Homepage: https://shiweiliuiiiiiii.github.io/
+
+My open-sourced papers and repos: 
+
+1. ITOP (ICML 2021) **A concept to train sparse model to dense performance**.\
+[Do We Actually Need Dense Over-Parameterization? In-Time Over-Parameterization in Sparse Training](https://arxiv.org/abs/2102.02887)\
+[code](https://github.com/Shiweiliuiiiiiii/In-Time-Over-Parameterization).
+
+2. Selfish-RNN (ICML 2021) **Selfish Sparse RNN Training**. \
+[Selfish Sparse RNN Training](https://arxiv.org/abs/2101.09048)\
+[code](https://github.com/Shiweiliuiiiiiii/Selfish-RNN).
+
+3. GraNet (NeurIPS 2021) **A State-of-the-art brain-inspired sparse training method**. \
+[Sparse Training via Boosting Pruning Plasticity with Neuroregeneration](https://arxiv.org/abs/2106.10404)\
+[code](https://github.com/VITA-Group/GraNet).
+
+4. Random_Pruning (ICLR 2022) **The Unreasonable Effectiveness of Random Pruning**\
+[The Unreasonable Effectiveness of Random Pruning: Return of the Most Naive Baseline for Sparse Training](https://arxiv.org/pdf/2202.02643.pdf)\
+[code](https://github.com/VITA-Group/Random_Pruning).
+
+5. FreeTickets (ICLR 2022) **Efficient Ensemble**\
+[Deep Ensembling with No Overhead for either Training or Testing: The All-Round Blessings of Dynamic Sparsity](https://arxiv.org/abs/2106.14568).\
+[code](https://github.com/VITA-Group/FreeTickets). 
+
