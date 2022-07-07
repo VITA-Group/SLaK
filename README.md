@@ -73,14 +73,14 @@ python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 --epochs 300 --model SLaK_tiny --drop_path 0.1 --batch_size 128 \
 --lr 4e-3 --update_freq 8 --model_ema true --model_ema_eval true \
 --data_path /path/to/imagenet-1k --num_workers 40 \
---kernel-size 51 49 47 13 5 --output_dir /path/to/save_results
+--kernel_size 51 49 47 13 5 --output_dir /path/to/save_results
 ```
 
 - You can add `--use_amp true` to train in PyTorch's Automatic Mixed Precision (AMP).
 - Use `--resume /path_or_url/to/checkpoint.pth` to resume training from a previous checkpoint; use `--auto_resume true` to auto-resume from latest checkpoint in the specified output folder.
 - `--batch_size`: batch size per GPU; `--update_freq`: gradient accumulation steps.
 - The effective batch size = `--nodes` * `--ngpus` * `--batch_size` * `--update_freq`. In the example above, the effective batch size is `4*8*128*1 = 4096`. You can adjust these four arguments together to keep the effective batch size at 4096 and avoid OOM issues, based on the model size, number of nodes and GPU memory.
-- `--sparse`: enable sparse model; `--sparsity`: model sparsity; `--width_factor`: model width; `-u`: adaptation frequency; `--prune_rate`: adaptation rate.
+- `--sparse`: enable sparse model; `--sparsity`: model sparsity; `--width_factor`: model width; `-u`: adaptation frequency; `--prune_rate`: adaptation rate, `--kernel_size`: kernel size of each stage, 5 is the size of the smaller edge.
 
 ### ImageNet-1K SLaK-S on a single machine
 ```
@@ -89,5 +89,5 @@ python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 --epochs 300 --model SLaK_small --drop_path 0.1 --batch_size 128 \
 --lr 4e-3 --update_freq 8 --model_ema true --model_ema_eval true \
 --data_path /path/to/imagenet-1k --num_workers 40 \
---kernel-size 51 49 47 13 5 --output_dir /path/to/save_results
+--kernel_size 51 49 47 13 5 --output_dir /path/to/save_results
 ```
