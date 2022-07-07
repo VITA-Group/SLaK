@@ -69,8 +69,8 @@ We provide ImageNet-1K training, and ImageNet-1K fine-tuning commands here.
 ### ImageNet-1K SLaK-T on a single machine
 ```
 python -m torch.distributed.launch --nproc_per_node=4 main.py  \
---sparse --width-factor 1.3 -u 100 --sparsity 0.4 --sparse_init snip  --prune_rate 0.3 \
---LoRA True --epochs 300 --model SLaK_tiny --drop_path 0.1 --batch_size 128 \
+--Decom True --sparse --width-factor 1.3 -u 100 --sparsity 0.4 --sparse_init snip  --prune_rate 0.3 \
+--epochs 300 --model SLaK_tiny --drop_path 0.1 --batch_size 128 \
 --lr 4e-3 --update_freq 8 --model_ema true --model_ema_eval true \
 --data_path /path/to/imagenet-1k --num_workers 40 \
 --kernel-size 51 49 47 13 5 --output_dir /path/to/save_results
@@ -85,9 +85,9 @@ python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 ### ImageNet-1K SLaK-S on a single machine
 ```
 python -m torch.distributed.launch --nproc_per_node=4 main.py  \
---width-factor 1.3 -u 4000 --sparsity 0.4 --method DST --sparse-init ERK \
---LoRA True --epochs 120 --model SLaK_small --drop_path 0.4 --batch_size 128 \
+--Decom True --sparse --width-factor 1.3 -u 100 --sparsity 0.4 --sparse_init snip  --prune_rate 0.3 \
+--epochs 300 --model SLaK_small --drop_path 0.4 --batch_size 128 \
 --lr 4e-3 --update_freq 8 --model_ema true --model_ema_eval true \
---data_path /path/to/imagenet-1k --num_workers 72 \
---kernel-size 51 49 47 13 3 --output_dir /path/to/save_results
+--data_path /path/to/imagenet-1k --num_workers 40 \
+--kernel-size 51 49 47 13 5 --output_dir /path/to/save_results
 ```
