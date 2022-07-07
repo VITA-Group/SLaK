@@ -60,21 +60,21 @@ class ReparamLargeKernelConv(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size,
                  stride, groups,
                  small_kernel,
-                 small_kernel_merged=False, LoRA=False):
+                 small_kernel_merged=False, Decom=False):
         super(ReparamLargeKernelConv, self).__init__()
         self.kernel_size = kernel_size
         self.small_kernel = small_kernel
-        self.LoRA = LoRA
+        self.Decom = Decom
         # We assume the conv does not change the feature map size, so padding = k//2. Otherwise, you may configure padding as you wish, and change the padding of small_conv accordingly.
         padding = kernel_size // 2
         if small_kernel_merged:
             self.lkb_reparam = get_conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size,
                                           stride=stride, padding=padding, dilation=1, groups=groups, bias=True)
         else:
-            if self.LoRA:
-                self.LoRA1 = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=(kernel_size, small_kernel),
+            if self.Decom:
+                self.Decom1 = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=(kernel_size, small_kernel),
                                       stride=stride, padding=padding, dilation=1, groups=groups)
-                self.LoRA2 = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=(small_kernel, kernel_size),
+                self.Decom2 = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=(small_kernel, kernel_size),
                                      stride=stride, padding=padding, dilation=1, groups=groups)
             else:
                 self.lkb_origin = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size,
@@ -87,8 +87,8 @@ class ReparamLargeKernelConv(nn.Module):
     def forward(self, inputs):
         if hasattr(self, 'lkb_reparam'):
             out = self.lkb_reparam(inputs)
-        elif self.LoRA:
-            out = self.LoRA1(inputs) + self.LoRA2(inputs)
+        elif self.Decom:
+            out = self.Decom1(inputs) + self.Decom2(inputs)
             if hasattr(self, 'small_conv'):
                 out += self.small_conv(inputs)
         else:
@@ -132,13 +132,13 @@ class Block(nn.Module):
         drop_path (float): Stochastic depth rate. Default: 0.0
         layer_scale_init_value (float): Init value for Layer Scale. Default: 1e-6.
     """
-    def __init__(self, dim, drop_path=0., layer_scale_init_value=1e-6, kernel_size=(7,7), LoRA=None):
+    def __init__(self, dim, drop_path=0., layer_scale_init_value=1e-6, kernel_size=(7,7), Decom=None):
         super().__init__()
 
         self.large_kernel = ReparamLargeKernelConv(in_channels=dim, out_channels=dim,
                                                    kernel_size=kernel_size[0],
                                                    stride=1, groups=dim, small_kernel=kernel_size[1],
-                                                   small_kernel_merged=False, LoRA=LoRA)
+                                                   small_kernel_merged=False, Decom=Decom)
 
         self.norm = LayerNorm(dim, eps=1e-6)
         self.pwconv1 = nn.Linear(dim, 4 * dim) # pointwise/1x1 convs, implemented with linear layers
@@ -178,7 +178,7 @@ class SLaK(nn.Module):
     """
     def __init__(self, in_chans=3, num_classes=1000, 
                  depths=[3, 3, 9, 3], dims=[96, 192, 384, 768], drop_path_rate=0., 
-                 layer_scale_init_value=1e-6, head_init_scale=1., kernel_size=[31, 29, 27, 13, 3], width_factor=1, LoRA=None
+                 layer_scale_init_value=1e-6, head_init_scale=1., kernel_size=[51, 49, 47, 13, 5], width_factor=1.0, Decom=None
                  ):
         super().__init__()
         dims = [int(x*width_factor) for x in dims]
@@ -202,7 +202,7 @@ class SLaK(nn.Module):
         for i in range(4):
             stage = nn.Sequential(
                 *[Block(dim=dims[i], drop_path=dp_rates[cur + j], 
-                layer_scale_init_value=layer_scale_init_value, kernel_size=(self.kernel_size[i], self.kernel_size[-1]), LoRA=LoRA) for j in range(depths[i])]
+                layer_scale_init_value=layer_scale_init_value, kernel_size=(self.kernel_size[i], self.kernel_size[-1]), Decom=Decom) for j in range(depths[i])]
             )
             self.stages.append(stage)
             cur += depths[i]

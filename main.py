@@ -26,7 +26,6 @@ from optim_factory import create_optimizer, LayerDecayValueAssigner
 from datasets import build_dataset
 from engine import train_one_epoch, evaluate
 from utils import NativeScalerWithGradNormCount as NativeScaler
-import sparse_core
 from sparse_core import Masking, CosineDecay
 
 import utils
@@ -205,11 +204,20 @@ def get_args_parser():
                         help="Save model checkpoints as W&B Artifacts.")
 
     # large kernel
-    parser.add_argument('--kernel-size', nargs="*", type=int,
-                        default = [31,29,27,13,3], help='kernel size of attention (default: [31,29,27,13,3])')
+    parser.add_argument('--sparse', action='store_true', help='Enable sparse mode. Default: False.')
+    parser.add_argument('--growth', type=str, default='gradient', help='Growth mode. Choose from: momentum, random, random_unfired, and momentum_neuron.')
+    parser.add_argument('--prune', type=str, default='magnitude', help='Prune mode / pruning mode. Choose from: magnitude, SET.')
+    parser.add_argument('--redistribution', type=str, default='none', help='Redistribution mode. Choose from: momentum, magnitude, nonzeros, or none.')
+    parser.add_argument('--prune_rate', type=float, default=0.3, help='The pruning rate / prune rate.')
+    parser.add_argument('--sparsity', type=float, default=0.4, help='The density of the overall sparse network.')
+    parser.add_argument('--verbose', action='store_true', help='Prints verbose status of pruning/growth algorithms.')
+    parser.add_argument('--fix', action='store_true', help='Fix topology during training. Default: True.')
+    parser.add_argument('--sparse_init', type=str, default='ERK', help='sparse initialization')
+    parser.add_argument('-u', '--update-frequency', type=int, default=2500, metavar='N', help='how many iterations to train between mask update')
+    parser.add_argument('--only-L', action='store_true', help='only sparsify large kernels.')
+    parser.add_argument('--kernel-size', nargs="*", type=int, default = [51,49,47,13,5], help='kernel size of conv [stage1, stage2, stage3, stage4, N]')
     parser.add_argument('--width-factor', type=float, default=1, help='set the width factor of the model')
-    parser.add_argument('--LoRA', type=str2bool, default=False, help='Enabling low rank path')
-    sparse_core.add_sparse_args(parser)
+    parser.add_argument('--Decom', type=str2bool, default=False, help='Enabling low rank path')
 
     return parser
 
@@ -297,7 +305,7 @@ def main(args):
         head_init_scale=args.head_init_scale,
         kernel_size=args.kernel_size,
         width_factor=args.width_factor,
-        LoRA=args.LoRA
+        Decom=args.Decom
         )
 
     if args.finetune:
