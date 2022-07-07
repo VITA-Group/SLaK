@@ -112,3 +112,10 @@ python main.py --model SLaK_tiny --eval true \
 --input_size 224 --drop_path 0.2 \
 --data_path /path/to/imagenet-1k
 ```
+
+## Acknowledgement
+The released PyTorch training script is based on the code of [ConvNeXt](https://github.com/facebookresearch/ConvNeXt) and [RepLKNet](https://github.com/DingXiaoH/RepLKNet-pytorch), which were built using the [timm](https://github.com/rwightman/pytorch-image-models) library, [DeiT](https://github.com/facebookresearch/deit) and [BEiT](https://github.com/microsoft/unilm/tree/master/beit) repositories.
+
+## License
+This project is released under the MIT license.
+
