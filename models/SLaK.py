@@ -259,47 +259,28 @@ class LayerNorm(nn.Module):
             return x
 
 
-model_urls = {
-    "slak_tiny_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_tiny_1k_224_ema.pth",
-    "slak_small_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_small_1k_224_ema.pth",
-    "slak_base_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_base_1k_224_ema.pth",
-    "slak_large_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_large_1k_224_ema.pth",
-}
-
 @register_model
 def SLaK_tiny(pretrained=False, **kwargs):
     model = SLaK(depths=[3, 3, 9, 3], dims=[96, 192, 384, 768], **kwargs)
-    if pretrained:
-        url = model_urls['slak_tiny_1k']
-        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
-        model.load_state_dict(checkpoint["model"])
+
     return model
 
 @register_model
 def SLaK_small(pretrained=False, **kwargs):
     model = SLaK(depths=[3, 3, 27, 3], dims=[96, 192, 384, 768], **kwargs)
-    if pretrained:
-        url = model_urls['slak_small_1k']
-        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu")
-        model.load_state_dict(checkpoint["model"])
+
     return model
 
 @register_model
 def SLaK_base(pretrained=False, in_22k=False, **kwargs):
     model = SLaK(depths=[3, 3, 27, 3], dims=[128, 256, 512, 1024], **kwargs)
-    if pretrained:
-        url = model_urls['slak_base_22k'] if in_22k else model_urls['slak_base_1k']
-        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu")
-        model.load_state_dict(checkpoint["model"])
+
     return model
 
 @register_model
 def SLaK_large(pretrained=False, in_22k=False, **kwargs):
     model = SLaK(depths=[3, 3, 27, 3], dims=[192, 384, 768, 1536], **kwargs)
-    if pretrained:
-        url = model_urls['slak_large_22k'] if in_22k else model_urls['slak_large_1k']
-        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu")
-        model.load_state_dict(checkpoint["model"])
+
     return model
 
 
