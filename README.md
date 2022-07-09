@@ -103,7 +103,7 @@ python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 ```
 
 ## Evaluation
-We give an example evaluation command for a ImageNet-22K pre-trained, then ImageNet-1K fine-tuned ConvNeXt-B:
+We give an example evaluation command for a SLaK_tiny on ImageNet-1K :
 
 Single-GPU
 ```
@@ -113,6 +113,39 @@ python main.py --model SLaK_tiny --eval true \
 --input_size 224 --drop_path 0.2 \
 --data_path /path/to/imagenet-1k
 ```
+
+Multi-GPUs
+```
+python -m torch.distributed.launch --nproc_per_node=8 main.py \
+--model SLaK_tiny --eval true \
+--Decom True --kernel_size 51 49 47 13 5 --width_factor 1.3 \
+--resume path/to/checkpoint \
+--input_size 224 --drop_path 0.2 \
+--data_path /path/to/imagenet-1k
+```
+
+## Semantic Segmentation and Object Detection
+
+We use MMSegmentation and MMDetection frameworks. Just clone MMSegmentation or MMDetection, and
+
+1. Put ```segmentation/slak.py``` into ```mmsegmentation/mmseg/models/backbones/``` or ```mmdetection/mmdet/models/backbones/```. The only difference between ```segmentation/slak.py``` and ```SLaK.py``` for ImageNet classification is the ```@BACKBONES.register_module```.
+2. Add RepLKNet into ```mmsegmentation/mmseg/models/backbones/__init__.py``` or ```mmdetection/mmdet/models/backbones/__init__.py```. That is
+  ```
+  ...
+ from .slak import SLaK
+  __all__ = ['ResNet', ..., 'SLaK']
+  ```
+3. Put ```segmentation/configs/*.py``` into ```mmsegmentation/configs/SLaK/``` or ```detection/configs/*.py``` into ```mmdetection/configs/SLaK/```
+4. Download and use our weights. For examples, to evaluate SLaK-tiny + UperNet on Cityscapes
+  ```
+  python -m torch.distributed.launch --nproc_per_node=4 tools/test.py configs/SLaK/upernet_slak_tiny_512_80k_ade20k_ss.py --launcher pytorch --eval mIoU
+  ```
+5. Or you may finetune our released pretrained weights (see the tips below about the batch size and number of iterations)
+  ```
+   bash tools/dist_train.sh  configs/SLaK/upernet_slak_tiny_512_80k_ade20k_ss.py 4 --work-dir ADE20_SLaK_51_sparse_1000ite/ --auto-resume  --seed 0 --deterministic
+   ```
+   The path of pretrained models is 'checkpoint_file' in 'upernet_slak_tiny_512_80k_ade20k_ss'.
+   
 ## More information will come soon.
 
 ## Acknowledgement
