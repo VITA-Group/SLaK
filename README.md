@@ -22,14 +22,24 @@ We propose **SLaK**, a pure ConvNet model that for the first time is able to sca
 
 <!-- ✅ ⬜️  -->
 
-## Results and Pre-trained Models
-### ImageNet-1K trained models
+## Results and ImageNet-1K trained models
+
+### SLaK Models with 51x51 kernels trained on ImageNet-1K for 300 epochs
 
 | name | resolution | kernel size |acc@1 | #params | FLOPs | model |
 |:---:|:---:|:---:|:---:| :---:|:---:|:---:|
 | SLaK-T | 224x224 | 51x51 |82.5 | 30M | 5.0G | [Google Drive](https://drive.google.com/file/d/14KW78ls625vwYV4eR78n8QQmPPKwnwkx/view?usp=sharing) |
 | SLaK-S | 224x224 | 51x51 | 83.8 | 55M | 9.8G |  [Google Drive](https://drive.google.com/file/d/1etM6KQbnlsgDAZ37adsQJ3UI8Bbv2AVe/view?usp=sharing) |
 | SLaK-B | 224x224 | 51x51 | 84.0 | 95M | 17.1G |  [Google Drive](https://drive.google.com/file/d/1duUxUD3RSblQ6eDHd0n-u0aulwGypf1j/view?usp=sharing) |
+
+### SLaK-T Models with 31x31, 51,51, and 61x61 kernels trained on ImageNet-1K for 120 epochs
+
+| name | resolution | kernel size |acc@1 | #params | FLOPs | model |
+|:---:|:---:|:---:|:---:| :---:|:---:|:---:|
+| SLaK-T | 224x224 | 31x31 | 81.5 | 30M | 4.8G | [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/VXzBxFXQdlAQ7h8) |
+| SLaK-T | 224x224 | 51x51 | 81.6 | 30M | 5.0G |  [Google Drive](https://surfdrive.surf.nl/files/index.php/s/WiQYWNclJ9bW5XV) |
+| SLaK-T | 224x224 | 61x61 | 81.5 | 31M | 5.2G |  [Google Drive](https://surfdrive.surf.nl/files/index.php/s/VpR1te71NmVImJb) |
+
 
 ## Installation
 
