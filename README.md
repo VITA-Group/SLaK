@@ -114,6 +114,8 @@ python -m torch.distributed.launch --nproc_per_node=16 main.py  \
 --kernel_size 51 49 47 13 5 --output_dir /path/to/save_results
 ```
 
+To run ConvNeXt, simple set the kernel size as --kernel_size 7 7 7 7 100. (Make sure that the last number is larger than the first four numbers)
+
 ## Evaluation
 We give an example evaluation command for a SLaK_tiny on ImageNet-1K :
 
