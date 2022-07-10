@@ -146,11 +146,11 @@ We use MMSegmentation and MMDetection frameworks. Just clone MMSegmentation or M
   __all__ = ['ResNet', ..., 'SLaK']
   ```
 3. Put ```segmentation/configs/*.py``` into ```mmsegmentation/configs/SLaK/``` or ```detection/configs/*.py``` into ```mmdetection/configs/SLaK/```
-4. Download and use our weights. For examples, to evaluate SLaK-tiny + UperNet on Cityscapes
+4. Download and use our weights. For examples, to evaluate SLaK-tiny + UperNet on ADE20K
   ```
   python -m torch.distributed.launch --nproc_per_node=4 tools/test.py configs/SLaK/upernet_slak_tiny_512_80k_ade20k_ss.py --launcher pytorch --eval mIoU
   ```
-5. Or you may finetune our released pretrained weights (see the tips below about the batch size and number of iterations)
+5. Or you may finetune our released pretrained weights
   ```
    bash tools/dist_train.sh  configs/SLaK/upernet_slak_tiny_512_80k_ade20k_ss.py 4 --work-dir ADE20_SLaK_51_sparse_1000ite/ --auto-resume  --seed 0 --deterministic
    ```
