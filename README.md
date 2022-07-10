@@ -12,7 +12,9 @@ Eindhoven University of Technology, University of Texas at Austin, University of
 <img src="https://github.com/Shiweiliuiiiiiii/SLaK/blob/main/SLaK.png" width="500" height="300">
 </p>
 
-We propose **SLaK**, a pure ConvNet model that for the first time is able to scale the convolutional kernels up to 51x51. 
+We propose **SLaK**, a pure ConvNet model that for the first time is able to scale the convolutional kernels up to 51x51.
+
+See our talk given for the 2nd Workshop on Dynamic Neural Networks Meet Computer Vision [here](https://drive.google.com/file/d/1_dqzEUARr2WgxGtSeGSRPsh1kufQAa-8/view) to know our model better.
 
 ## Catalog
 - [x] ImageNet-1K Training Code   
