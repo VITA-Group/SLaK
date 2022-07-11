@@ -88,9 +88,9 @@ python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 --kernel_size 51 49 47 13 5 --output_dir /path/to/save_results
 ```
 
-- **To enable to train/evaluate SLaK models, make sure that you add `--sparse --Decom True --kernel_size 51 49 47 13 5` in your script.** `--sparse`: enable sparse model; `--sparsity`: model sparsity; `--width_factor`: model width; `-u`: adaptation frequency; `--prune_rate`: adaptation rate, `--kernel_size`: [4 * (kernel size of each stage) + the size of the smaller kernel edge].
+- **To enable to train/evaluate SLaK models, make sure that you add `--sparse --Decom True --kernel_size 51 49 47 13 5 --sparse_init snip` in your script.** `--sparse`: enable sparse model; `--sparsity`: model sparsity; `--width_factor`: model width; `-u`: adaptation frequency; `--prune_rate`: adaptation rate, `--kernel_size`: [4 * (kernel size of each stage) + the size of the smaller kernel edge].
 - You can add `--use_amp true` to train in PyTorch's Automatic Mixed Precision (AMP).
-- Use `--resume /path_or_url/to/checkpoint.pth` to resume training from a previous checkpoint; use `--auto_resume true` to auto-resume from latest checkpoint in the specified output folder.
+- Use `--resume /path_or_url/to/checkpoint.pth` to resume training from a previous checkpoint; use `--auto_resume true` to auto-resume from latest checkpoint in the specified output folder. To resume the training of sparse models, we need to set `--sparse_init resume` to get the masks.
 - `--batch_size`: batch size per GPU; `--update_freq`: gradient accumulation steps.
 - The effective batch size = `--nodes` * `--ngpus` * `--batch_size` * `--update_freq`. In the example above, the effective batch size is `4*8*128*1 = 4096`. You can adjust these four arguments together to keep the effective batch size at 4096 and avoid OOM issues, based on the model size, number of nodes and GPU memory.
 
@@ -160,6 +160,29 @@ We use MMSegmentation and MMDetection frameworks. Just clone MMSegmentation or M
    ```
    The path of pretrained models is 'checkpoint_file' in 'upernet_slak_tiny_512_80k_ade20k_ss'.
    
+## Visualizing the Effective Receptive Field
+
+We have released our script to visualize and analyze the Effective Receptive Field (ERF). For example, to automatically download the ResNet-101 from torchvision and obtain the aggregated contribution score matrix,
+```
+python erf/visualize_erf.py --model resnet101 --data_path /path/to/imagenet-1k --save_path resnet101_erf_matrix.npy
+```
+Then calculate the high-contribution area ratio and visualize the ERF by
+```
+python erf/analyze_erf.py --source resnet101_erf_matrix.npy --heatmap_save resnet101_heatmap.png
+```
+Note this plotting script works with matplotlib 3.3.
+
+To visualize your own model, first define a model that outputs the last feature map rather than the logits (following [this example](https://github.com/VITA-Group/SLaK/blob/a9da48aff07d35571439524212f90cc75b830f4d/erf/SLaK_for_erf.py#L20)), add the code for building model and loading weights [here](https://github.com/VITA-Group/SLaK/blob/a9da48aff07d35571439524212f90cc75b830f4d/erf/visualize_erf.py#L81), then
+```
+python erf/visualize_erf.py --model your_model --weights /path/to/your/weights --data_path /path/to/imagenet-1k --save_path your_model_erf_matrix.npy
+```
+
+We have provided the saved matrices and source code to help reproduce. To reproduce the results of Figure 3 in our paper, run
+```
+python erf/erf_slak51_convnext7_convnext31.py
+```
+
+
 ## More information will come soon.
 
 ## Acknowledgement
