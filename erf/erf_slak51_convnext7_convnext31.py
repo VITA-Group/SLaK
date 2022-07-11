@@ -12,9 +12,9 @@ from matplotlib import pyplot as plt
 fig = figure(num=None, figsize=(12, 4), dpi=150, facecolor='w', edgecolor='k')
 
 
-matrix1 = np.load('Saved_matrix/ConvNext-T_7.npy')
-matrix2 = np.load('Saved_matrix/ConvNext-T_31.npy')
-matrix3 = np.load('Saved_matrix/SLaK-T_51.npy')
+matrix1 = np.load('erf/Saved_matrix/ConvNext-T_7.npy')
+matrix2 = np.load('erf/Saved_matrix/ConvNext-T_31.npy')
+matrix3 = np.load('erf/Saved_matrix/SLaK-T_51.npy')
 
 matrice = [matrix1, matrix2, matrix3]
 
