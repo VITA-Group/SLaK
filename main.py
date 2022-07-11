@@ -205,10 +205,10 @@ def get_args_parser():
 
     # large kernel
     parser.add_argument('--Decom', type=str2bool, default=False, help='Enabling kernel decomposition')
-    parser.add_argument('--width_factor', type=float, default=1, help='set the width factor of the model')
+    parser.add_argument('--width_factor', type=float, default=1.0, help='set the width factor of the model')
     parser.add_argument('--sparse', action='store_true', help='Enable sparse model. Default: False.')
     parser.add_argument('--kernel_size', nargs="*", type=int, default = [51,49,47,13,5], help='kernel size of conv [stage1, stage2, stage3, stage4, N]')
-    parser.add_argument('--growth', type=str, default='gradient', help='Growth mode. Choose from: momentum, random, gradient.')
+    parser.add_argument('--growth', type=str, default='random', help='Growth mode. Choose from: momentum, random, gradient.')
     parser.add_argument('--prune', type=str, default='magnitude', help='Prune mode / pruning mode. Choose from: magnitude, SET.')
     parser.add_argument('--redistribution', type=str, default='none', help='Redistribution mode. Choose from: momentum, magnitude, nonzeros, or none.')
     parser.add_argument('--prune_rate', type=float, default=0.3, help='The pruning rate / prune rate.')
