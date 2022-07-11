@@ -1,8 +1,8 @@
-#  More ConvNets in the 2020s: Scaling up Kernels Beyond 51 × 51 using Sparsity
+#  [More ConvNets in the 2020s: Scaling up Kernels Beyond 51 × 51 using Sparsity](https://arxiv.org/abs/2207.03620)
 
 Official PyTorch implementation of **SLaK**, from the following paper: 
 
-More ConvNets in the 2020s: Scaling up Kernels Beyond 51 x 51 using Sparsity. 
+[More ConvNets in the 2020s: Scaling up Kernels Beyond 51 x 51 using Sparsity](https://arxiv.org/abs/2207.03620)
 
 [Shiwei Liu](https://shiweiliuiiiiiii.github.io/), [Tianlong Chen](https://tianlong-chen.github.io/about/), [Xiaohan Chen](http://www.xiaohanchen.com/), [Xuxi Chen](https://xxchen.site/), Qiao Xiao, Boqian Wu, [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Decebal Mocanu](https://people.utwente.nl/d.c.mocanu), [Zhangyang Wang](https://vita-group.github.io/)\
 Eindhoven University of Technology, University of Texas at Austin, University of Twente
@@ -12,7 +12,9 @@ Eindhoven University of Technology, University of Texas at Austin, University of
 <img src="https://github.com/Shiweiliuiiiiiii/SLaK/blob/main/SLaK.png" width="500" height="300">
 </p>
 
-We propose **SLaK**, a pure ConvNet model that for the first time is able to scale the convolutional kernels up to 51x51. 
+We propose **SLaK**, a pure ConvNet model that for the first time is able to scale the convolutional kernels beyond 51x51.
+
+See our talk given for the 2nd Workshop on Dynamic Neural Networks Meet Computer Vision [here](https://drive.google.com/file/d/1_dqzEUARr2WgxGtSeGSRPsh1kufQAa-8/view) to know our model better.
 
 ## Catalog
 - [x] ImageNet-1K Training Code   
@@ -22,14 +24,24 @@ We propose **SLaK**, a pure ConvNet model that for the first time is able to sca
 
 <!-- ✅ ⬜️  -->
 
-## Results and Pre-trained Models
-### ImageNet-1K trained models
+## Results and ImageNet-1K trained models
+
+### SLaK Models with 51x51 kernels trained on ImageNet-1K for 300 epochs
 
 | name | resolution | kernel size |acc@1 | #params | FLOPs | model |
 |:---:|:---:|:---:|:---:| :---:|:---:|:---:|
 | SLaK-T | 224x224 | 51x51 |82.5 | 30M | 5.0G | [Google Drive](https://drive.google.com/file/d/14KW78ls625vwYV4eR78n8QQmPPKwnwkx/view?usp=sharing) |
 | SLaK-S | 224x224 | 51x51 | 83.8 | 55M | 9.8G |  [Google Drive](https://drive.google.com/file/d/1etM6KQbnlsgDAZ37adsQJ3UI8Bbv2AVe/view?usp=sharing) |
 | SLaK-B | 224x224 | 51x51 | 84.0 | 95M | 17.1G |  [Google Drive](https://drive.google.com/file/d/1duUxUD3RSblQ6eDHd0n-u0aulwGypf1j/view?usp=sharing) |
+
+### SLaK-T Models with 31x31, 51,51, and 61x61 kernels trained on ImageNet-1K for 120 epochs
+
+| name | resolution | kernel size |acc@1 | #params | FLOPs | model |
+|:---:|:---:|:---:|:---:| :---:|:---:|:---:|
+| SLaK-T | 224x224 | 31x31 | 81.5 | 30M | 4.8G | [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/VXzBxFXQdlAQ7h8) |
+| SLaK-T | 224x224 | 51x51 | 81.6 | 30M | 5.0G |  [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/WiQYWNclJ9bW5XV) |
+| SLaK-T | 224x224 | 61x61 | 81.5 | 31M | 5.2G |  [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/VpR1te71NmVImJb) |
+
 
 ## Installation
 
@@ -44,7 +56,7 @@ conda activate slak
 
 Install [Pytorch](https://pytorch.org/)>=1.10.0. For example:
 ```
-conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
+conda install pytorch==1.10.0 torchvision==0.11.0 torchaudio==0.10.0 cudatoolkit=11.3 -c pytorch -c conda-forge
 ```
 
 Clone this repo and install required packages:
@@ -84,9 +96,9 @@ python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 
 ### ImageNet-1K SLaK-S on a single machine
 ```
-python -m torch.distributed.launch --nproc_per_node=4 main.py  \
+python -m torch.distributed.launch --nproc_per_node=8 main.py  \
 --Decom True --sparse --width_factor 1.3 -u 100 --sparsity 0.4 --sparse_init snip  --prune_rate 0.3 --growth random \
---epochs 300 --model SLaK_small --drop_path 0.4 --batch_size 128 \
+--epochs 300 --model SLaK_small --drop_path 0.4 --batch_size 64 \
 --lr 4e-3 --update_freq 8 --model_ema true --model_ema_eval true \
 --data_path /path/to/imagenet-1k --num_workers 40 \
 --kernel_size 51 49 47 13 5 --output_dir /path/to/save_results
@@ -94,16 +106,18 @@ python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 
 ### ImageNet-1K SLaK-B on a single machine
 ```
-python -m torch.distributed.launch --nproc_per_node=4 main.py  \
+python -m torch.distributed.launch --nproc_per_node=16 main.py  \
 --Decom True --sparse --width_factor 1.3 -u 100 --sparsity 0.4 --sparse_init snip  --prune_rate 0.3 --growth random \
---epochs 300 --model SLaK_base --drop_path 0.5 --batch_size 128 \
+--epochs 300 --model SLaK_base --drop_path 0.5 --batch_size 32 \
 --lr 4e-3 --update_freq 8 --model_ema true --model_ema_eval true \
 --data_path /path/to/imagenet-1k --num_workers 40 \
 --kernel_size 51 49 47 13 5 --output_dir /path/to/save_results
 ```
 
+To run ConvNeXt, simple set the kernel size as --kernel_size 7 7 7 7 100. (Make sure that the last number is larger than the first four numbers)
+
 ## Evaluation
-We give an example evaluation command for a ImageNet-22K pre-trained, then ImageNet-1K fine-tuned ConvNeXt-B:
+We give an example evaluation command for a SLaK_tiny on ImageNet-1K :
 
 Single-GPU
 ```
@@ -113,6 +127,39 @@ python main.py --model SLaK_tiny --eval true \
 --input_size 224 --drop_path 0.2 \
 --data_path /path/to/imagenet-1k
 ```
+
+Multi-GPUs
+```
+python -m torch.distributed.launch --nproc_per_node=8 main.py \
+--model SLaK_tiny --eval true \
+--Decom True --kernel_size 51 49 47 13 5 --width_factor 1.3 \
+--resume path/to/checkpoint \
+--input_size 224 --drop_path 0.2 \
+--data_path /path/to/imagenet-1k
+```
+
+## Semantic Segmentation and Object Detection
+
+We use MMSegmentation and MMDetection frameworks. Just clone MMSegmentation or MMDetection, and
+
+1. Put ```segmentation/slak.py``` into ```mmsegmentation/mmseg/models/backbones/``` or ```mmdetection/mmdet/models/backbones/```. The only difference between ```segmentation/slak.py``` and ```SLaK.py``` for ImageNet classification is the ```@BACKBONES.register_module```.
+2. Add RepLKNet into ```mmsegmentation/mmseg/models/backbones/__init__.py``` or ```mmdetection/mmdet/models/backbones/__init__.py```. That is
+  ```
+  ...
+ from .slak import SLaK
+  __all__ = ['ResNet', ..., 'SLaK']
+  ```
+3. Put ```segmentation/configs/*.py``` into ```mmsegmentation/configs/SLaK/``` or ```detection/configs/*.py``` into ```mmdetection/configs/SLaK/```
+4. Download and use our weights. For examples, to evaluate SLaK-tiny + UperNet on ADE20K
+  ```
+  python -m torch.distributed.launch --nproc_per_node=4 tools/test.py configs/SLaK/upernet_slak_tiny_512_80k_ade20k_ss.py --launcher pytorch --eval mIoU
+  ```
+5. Or you may finetune our released pretrained weights
+  ```
+   bash tools/dist_train.sh  configs/SLaK/upernet_slak_tiny_512_80k_ade20k_ss.py 4 --work-dir ADE20_SLaK_51_sparse_1000ite/ --auto-resume  --seed 0 --deterministic
+   ```
+   The path of pretrained models is 'checkpoint_file' in 'upernet_slak_tiny_512_80k_ade20k_ss'.
+   
 ## More information will come soon.
 
 ## Acknowledgement
