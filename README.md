@@ -56,7 +56,7 @@ conda activate slak
 
 Install [Pytorch](https://pytorch.org/)>=1.10.0. For example:
 ```
-conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
+conda install pytorch==1.10.0 torchvision==0.11.0 torchaudio==0.10.0 cudatoolkit=11.3 -c pytorch -c conda-forge
 ```
 
 Clone this repo and install required packages:
