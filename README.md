@@ -81,7 +81,7 @@ We provide ImageNet-1K training, and ImageNet-1K fine-tuning commands here.
 ### ImageNet-1K SLaK-T on a single machine
 ```
 python -m torch.distributed.launch --nproc_per_node=4 main.py  \
---Decom True --sparse --width_factor 1.3 -u 100 --sparsity 0.4 --sparse_init snip  --prune_rate 0.3 --growth random \
+--Decom True --sparse --width_factor 1.3 -u 2000 --sparsity 0.4 --sparse_init snip  --prune_rate 0.5 --growth random \
 --epochs 300 --model SLaK_tiny --drop_path 0.1 --batch_size 128 \
 --lr 4e-3 --update_freq 8 --model_ema true --model_ema_eval true \
 --data_path /path/to/imagenet-1k --num_workers 40 \
