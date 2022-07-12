@@ -72,9 +72,9 @@ class ReparamLargeKernelConv(nn.Module):
                                           stride=stride, padding=padding, dilation=1, groups=groups, bias=True)
         else:
             if self.Decom:
-                self.Decom1 = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=(kernel_size, small_kernel),
+                self.LoRA1 = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=(kernel_size, small_kernel),
                                       stride=stride, padding=padding, dilation=1, groups=groups)
-                self.Decom2 = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=(small_kernel, kernel_size),
+                self.LoRA2 = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=(small_kernel, kernel_size),
                                      stride=stride, padding=padding, dilation=1, groups=groups)
             else:
                 self.lkb_origin = conv_bn(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size,
@@ -88,7 +88,7 @@ class ReparamLargeKernelConv(nn.Module):
         if hasattr(self, 'lkb_reparam'):
             out = self.lkb_reparam(inputs)
         elif self.Decom:
-            out = self.Decom1(inputs) + self.Decom2(inputs)
+            out = self.LoRA1(inputs) + self.LoRA2(inputs)
             if hasattr(self, 'small_conv'):
                 out += self.small_conv(inputs)
         else:
@@ -163,7 +163,7 @@ class Block(nn.Module):
         x = input + self.drop_path(x)
         return x
 
-class SLaK(nn.Module):
+class lkb_origin(nn.Module):
     r""" SLaK
         A PyTorch impl of More ConvNets in the 2020s: Scaling up Kernels Beyond 51 × 51 using Sparsity
 
