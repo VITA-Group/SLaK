@@ -163,7 +163,7 @@ class Block(nn.Module):
         x = input + self.drop_path(x)
         return x
 
-class lkb_origin(nn.Module):
+class SLaK(nn.Module):
     r""" SLaK
         A PyTorch impl of More ConvNets in the 2020s: Scaling up Kernels Beyond 51 × 51 using Sparsity
 
