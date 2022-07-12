@@ -30,7 +30,7 @@ model = dict(
         layer_scale_init_value=1.0,
         out_indices=[0, 1, 2, 3],
         kernel_size=[51,49,47,13,5],
-        LoRA=True,
+        Decom=True,
         width_factor=1.3,
     init_cfg=dict(type='Pretrained', checkpoint=checkpoint_file)
     ),
