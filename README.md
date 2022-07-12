@@ -32,7 +32,7 @@ We propose **SLaK**, a pure ConvNet model that for the first time is able to sca
 
 | name | resolution | kernel size |acc@1 | #params | FLOPs | model |
 |:---:|:---:|:---:|:---:| :---:|:---:|:---:|
-| SLaK-T | 224x224 | 51x51 |82.5 | 30M | 5.0G | [Google Drive](https://drive.google.com/file/d/14KW78ls625vwYV4eR78n8QQmPPKwnwkx/view?usp=sharing) |
+| SLaK-T | 224x224 | 51x51 |82.5 | 30M | 5.0G | [Google Drive](https://drive.google.com/file/d/1Iut2f5FMS_77jGPYoUJDQzDIXOsax1u4/view?usp=sharing) |
 | SLaK-S | 224x224 | 51x51 | 83.8 | 55M | 9.8G |  [Google Drive](https://drive.google.com/file/d/1etM6KQbnlsgDAZ37adsQJ3UI8Bbv2AVe/view?usp=sharing) |
 | SLaK-B | 224x224 | 51x51 | 84.0 | 95M | 17.1G |  [Google Drive](https://drive.google.com/file/d/1duUxUD3RSblQ6eDHd0n-u0aulwGypf1j/view?usp=sharing) |
 
