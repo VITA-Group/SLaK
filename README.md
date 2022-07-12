@@ -4,8 +4,11 @@ Official PyTorch implementation of **SLaK**, from the following paper:
 
 [More ConvNets in the 2020s: Scaling up Kernels Beyond 51 x 51 using Sparsity](https://arxiv.org/abs/2207.03620)
 
-[Shiwei Liu](https://shiweiliuiiiiiii.github.io/), [Tianlong Chen](https://tianlong-chen.github.io/about/), [Xiaohan Chen](http://www.xiaohanchen.com/), [Xuxi Chen](https://xxchen.site/), Qiao Xiao, Boqian Wu, [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Decebal Mocanu](https://people.utwente.nl/d.c.mocanu), [Zhangyang Wang](https://vita-group.github.io/)\
+[Shiwei Liu](https://shiweiliuiiiiiii.github.io/), [Tianlong Chen](https://tianlong-chen.github.io/about/), [Xiaohan Chen](http://www.xiaohanchen.com/), [Xuxi Chen](https://xxchen.site/), Qiao Xiao, Boqian Wu, [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Decebal Mocanu](https://people.utwente.nl/d.c.mocanu), [Zhangyang Wang](https://vita-group.github.io/)
+
 Eindhoven University of Technology, University of Texas at Austin, University of Twente
+
+ [[`arXiv`](https://arxiv.org/pdf/2207.03620.pdf)] [[`Atlas Wang's talk`](https://drive.google.com/file/d/1_dqzEUARr2WgxGtSeGSRPsh1kufQAa-8/view)]
 
 --- 
 <p align="center">
@@ -14,7 +17,6 @@ Eindhoven University of Technology, University of Texas at Austin, University of
 
 We propose **SLaK**, a pure ConvNet model that for the first time is able to scale the convolutional kernels beyond 51x51.
 
-See our talk given for the 2nd Workshop on Dynamic Neural Networks Meet Computer Vision [here](https://drive.google.com/file/d/1_dqzEUARr2WgxGtSeGSRPsh1kufQAa-8/view) to know our model better.
 
 ## Catalog
 - [x] ImageNet-1K Training Code   
