@@ -220,3 +220,8 @@ My open-sourced papers and repos:
 [Deep Ensembling with No Overhead for either Training or Testing: The All-Round Blessings of Dynamic Sparsity](https://arxiv.org/abs/2106.14568).\
 [code](https://github.com/VITA-Group/FreeTickets). 
 
+
+If you find this repository useful, please consider giving a star star and cite our paper.
+
+
+
