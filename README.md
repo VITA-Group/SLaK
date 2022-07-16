@@ -220,3 +220,14 @@ My open-sourced papers and repos:
 [Deep Ensembling with No Overhead for either Training or Testing: The All-Round Blessings of Dynamic Sparsity](https://arxiv.org/abs/2106.14568).\
 [code](https://github.com/VITA-Group/FreeTickets). 
 
+
+If you find this repository useful, please consider giving a star star and cite our paper.
+
+```
+@article{liu2022more,
+  title={More ConvNets in the 2020s: Scaling up Kernels Beyond 51x51 using Sparsity},
+  author={Liu, Shiwei and Chen, Tianlong and Chen, Xiaohan and Chen, Xuxi and Xiao, Qiao and Wu, Boqian and Pechenizkiy, Mykola and Mocanu, Decebal and Wang, Zhangyang},
+  journal={arXiv preprint arXiv:2207.03620},
+  year={2022}
+}
+```
