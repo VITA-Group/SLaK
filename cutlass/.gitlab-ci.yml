@@ -1,0 +1,69 @@
+stages:
+  - check
+  - test
+
+.rjob_template: &rjob_common
+  only:
+    - merge_requests
+  except:
+    variables:
+      - $CI_MERGE_REQUEST_TITLE =~ /WIP/
+      - $CI_MERGE_REQUEST_LABELS =~ /(^|,)no-ci($|,)/
+  before_script:
+    - export REPO_NAME=`echo $CI_PROJECT_URL|sed 's/.*:\/\///g;'`
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY_WS2" | tr -d '\r' | ssh-add -
+    - echo "$SSH_PRIVATE_KEY_ENGINE_CI1" | tr -d '\r' | ssh-add -
+    - echo "$SSH_PRIVATE_KEY_ENGINE_CI2" | tr -d '\r' | ssh-add -
+    - echo "$SSH_PRIVATE_KEY_ENGINE_CI1" > ~/.ssh/engine-ci
+    - echo "$SSH_PRIVATE_KEY_ENGINE_CI2" > ~/.ssh/id_rsa
+    - chmod 400 ~/.ssh/engine-ci
+    - chmod 400 ~/.ssh/id_rsa
+
+.rjob_settings:
+  rjob_common: &rjob_common_variables
+    CHARGED_GROUP: engine_ci
+    MACHINE_GROUP: engine_ci
+    DOCKER_IMAGE: registry.hh-d.brainpp.cn/megvii-engine/megbrain_ci:cu111_nv460_cudnn804_v3
+    EXPECTED_CPU: 32
+    EXPECTED_GPU: 1
+    EXPECTED_MEMORY: 61440
+    POSITIVE_TAGS: 2080ti
+  
+check:
+  stage: check
+  tags:
+    - local-shell-runner
+  only:
+    - merge_requests
+  script:
+    - npx commitlint --from origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME --to HEAD -V
+  except:
+    variables:
+      - $CI_MERGE_REQUEST_LABELS =~ /(^|,)release($|,)/
+
+cutlass_convolution_test:
+  <<: *rjob_common
+  stage: test
+  variables:
+    <<: *rjob_common_variables
+  tags:
+    - cutlass-rjob
+  script:
+    - source ./ci/setup_cuda.sh
+    - ./ci/cmake_cutlass.sh
+    - ./ci/run_cutlass_convolution_test.sh
+
+cutlass_test:
+  <<: *rjob_common
+  stage: test
+  variables:
+    <<: *rjob_common_variables
+  tags:
+    - cutlass-rjob
+  script:
+    - source ./ci/setup_cuda.sh
+    - ./ci/cmake_cutlass.sh
+    - ./ci/run_cutlass_test.sh
+
+
