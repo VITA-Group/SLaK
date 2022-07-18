@@ -67,7 +67,7 @@ git clone https://github.com/Shiweiliuiiiiiii/SLaK.git
 pip install timm tensorboardX six
 ```
 
-To enable training SLaK, we follow [RepLKNET](https://github.com/DingXiaoH/RepLKNet-pytorch#use-our-efficient-large-kernel-convolution-with-pytorch) and install the efficient large-kernel convolution with PyTorch provided by MegEngine:
+To enable training SLaK, we follow [RepLKNet](https://github.com/DingXiaoH/RepLKNet-pytorch#use-our-efficient-large-kernel-convolution-with-pytorch) and install the efficient large-kernel convolution with PyTorch provided by MegEngine:
 
 1. ```cd cutlass/examples/19_large_depthwise_conv2d_torch_extension```
 2. ```./setup.py install --user```. If you get errors, (1) check your ```CUDA_HOME```; (2) you might need to change the source code a bit to make tensors contiguous see [here](https://github.com/Shiweiliuiiiiiii/SLaK/blob/3f8b1c46eee34da440afae507df13bc6307c3b2c/depthwise_conv2d_implicit_gemm.py#L25) for example. 
@@ -163,7 +163,7 @@ We use MMSegmentation and MMDetection frameworks. Just clone MMSegmentation or M
    
 ## Visualizing the Effective Receptive Field
 
-The code is highly based on the libracy of [RepLKNET](https://github.com/DingXiaoH/RepLKNet-pytorch#visualizing-the-effective-receptive-field). We have released our script to visualize and analyze the Effective Receptive Field (ERF). The  For example, to automatically download the ResNet-101 from torchvision and obtain the aggregated contribution score matrix,
+The code is highly based on the libracy of [RepLKNet](https://github.com/DingXiaoH/RepLKNet-pytorch#visualizing-the-effective-receptive-field). We have released our script to visualize and analyze the Effective Receptive Field (ERF). The  For example, to automatically download the ResNet-101 from torchvision and obtain the aggregated contribution score matrix,
 ```
 python erf/visualize_erf.py --model resnet101 --data_path /path/to/imagenet-1k --save_path resnet101_erf_matrix.npy
 ```
@@ -187,7 +187,9 @@ python erf/erf_slak51_convnext7_convnext31.py
 ## More information will come soon.
 
 ## Acknowledgement
-The released PyTorch training script is based on the code of [ConvNeXt](https://github.com/facebookresearch/ConvNeXt) and [RepLKNet](https://github.com/DingXiaoH/RepLKNet-pytorch), which were built using the [timm](https://github.com/rwightman/pytorch-image-models) library, [DeiT](https://github.com/facebookresearch/deit) and [BEiT](https://github.com/microsoft/unilm/tree/master/beit) repositories.
+The released PyTorch training script is based on the code of [ConvNeXt](https://github.com/facebookresearch/ConvNeXt) and [RepLKNet](https://github.com/DingXiaoH/RepLKNet-pytorch), which were built using the [timm](https://github.com/rwightman/pytorch-image-models) library, [DeiT](https://github.com/facebookresearch/deit) and [BEiT](https://github.com/microsoft/unilm/tree/master/beit) repositories. 
+
+We thank the MegEngine team at MEGVII Technology and the authors of RepLKNet for releasing the efficient implementation of large-kernel convolution.
 
 ## License
 This project is released under the MIT license.
