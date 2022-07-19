@@ -150,7 +150,7 @@ We use MMSegmentation and MMDetection frameworks. Just clone MMSegmentation or M
  from .slak import SLaK
   __all__ = ['ResNet', ..., 'SLaK']
   ```
-3. Put ```segmentation/configs/*.py``` into ```mmsegmentation/configs/SLaK/``` or ```detection/configs/*.py``` into ```mmdetection/configs/SLaK/```
+3. Put ```segmentation/configs/*.py``` into ```mmsegmentation/configs/SLaK/``` or ```detection/configs/*.py``` into ```mmdetection/configs/SLaK/```; put files of ```mmsegmentation/mmseg/core/optimizers/''' into ```mmsegmentation/mmseg/core/optimizers/```.
 4. Download and use our weights. For examples, to evaluate SLaK-tiny + UperNet on ADE20K
   ```
   python -m torch.distributed.launch --nproc_per_node=4 tools/test.py configs/SLaK/upernet_slak_tiny_512_80k_ade20k_ss.py --launcher pytorch --eval mIoU
