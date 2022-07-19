@@ -218,6 +218,7 @@ def get_args_parser():
     parser.add_argument('--sparse_init', type=str, default='snip', help='layer-wise sparsity ratio')
     parser.add_argument('-u', '--update-frequency', type=int, default=100, metavar='N', help='how many iterations to adapt weights')
     parser.add_argument('--only-L', action='store_true', help='only sparsify large kernels.')
+    parser.add_argument('--bn', type=str2bool, default=True, help='add batch norm layer after each path')
 
 
     return parser
@@ -306,7 +307,8 @@ def main(args):
         head_init_scale=args.head_init_scale,
         kernel_size=args.kernel_size,
         width_factor=args.width_factor,
-        Decom=args.Decom
+        Decom=args.Decom,
+        bn = args.bn
         )
 
     if args.finetune:
