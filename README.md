@@ -19,9 +19,9 @@ We propose **SLaK**, a pure ConvNet model that for the first time is able to sca
 
 
 ## Catalog
-- [x] ImageNet-1K Training Code   
-- [x] ImageNet-1K Fine-tuning Code  
-- [x] Downstream Transfer (Detection, Segmentation) Code
+- [√] ImageNet-1K Training Code   
+- [√] ImageNet-1K Fine-tuning Code  
+- [√] Downstream Transfer (Detection, Segmentation) Code
 
 
 <!-- ✅ ⬜️  -->
@@ -35,6 +35,7 @@ We propose **SLaK**, a pure ConvNet model that for the first time is able to sca
 | SLaK-T | 224x224 | 51x51 |82.5 | 30M | 5.0G | [Google Drive](https://drive.google.com/file/d/1Iut2f5FMS_77jGPYoUJDQzDIXOsax1u4/view?usp=sharing) |
 | SLaK-S | 224x224 | 51x51 | 83.8 | 55M | 9.8G |  [Google Drive](https://drive.google.com/file/d/1etM6KQbnlsgDAZ37adsQJ3UI8Bbv2AVe/view?usp=sharing) |
 | SLaK-B | 224x224 | 51x51 | 84.0 | 95M | 17.1G |  [Google Drive](https://drive.google.com/file/d/1duUxUD3RSblQ6eDHd0n-u0aulwGypf1j/view?usp=sharing) |
+| SLaK-B | 384x384 | 51x51 | 85.5 | 95M | 50.3G |  [Google Drive]|
 
 ### SLaK-T Models with 31x31, 51,51, and 61x61 kernels trained on ImageNet-1K for 120 epochs
 
@@ -140,6 +141,30 @@ python -m torch.distributed.launch --nproc_per_node=8 main.py \
 ```
 
 ## Semantic Segmentation and Object Detection
+
+### Semantic Segmentation on ADE20K 
+
+| name | Configuration | kernel size |mIoU | #params | FLOPs | model |
+|:---:|:---:|:---:|:---:| :---:|:---:|:---:|
+| ConvNeXt-T | 120epochs/80K | 7x7 | 44.6 | 60M |  939G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
+| ConvNeXt-S | 120epochs/80K | 7x7 | 45.9 | 82M | 1027G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
+| SLaK-T     | 120epochs/80K  | 51x51 | 46.2 | 65M | 936G | [Surf Drive] |
+| ConvNeXt-T | 300epochs/160K | 7x7 | 46.0 | 60M | 939G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
+| SLaK-T | 300epochs/160K | 51x51 | 47.6 | 65M | 936G |  [Surf Drive] |
+| ConvNeXt-S | 300epochs/160K | 7x7 | 48.7 | 82M | 1027G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt) |
+| SLaK-S | 300epochs/160K | 51x51 | 49.4 | 91M | 1028G |  [Surf Drive] |
+| ConvNeXt-B | 300epochs/160K | 7x7 | 49.1 | 122M | 1170G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
+| SLaK-B | 300epochs/160K | 51x51 | 50.0 | 135M | 1172G | [Surf Drive]|
+
+### Object detection and segmentation on MS COCO 
+
+| name | Configuration | kernel size |$AP^{box}$ | $AP^{box}_{50}$ | $AP^{box}_{75}$  | $AP^{mask}$ | $AP^{mask}_{50}$ |  $AP^{mask}_{75}$ |  model |
+|:---:|:---:|:---:|:---:| :---:|:---:|:---:|:---:|:---:|:---:|
+| ConvNeXt-T | 120epochs/12epochs  | 7x7 | 47.3 | 65.9 | 51.5 | 41.1 | 63.2 | 44.4 |[ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
+| SLaK-T | 120epochs/12epochs  | 51x51 | 48.4 | 67.2 | 52.5 | 41.8 | 64.4 | 45.2 | [Surf Drive] |
+| ConvNeXt-T | 300epochs/36epochs  | 7x7 | 50.4 | 69.1 | 54.8 | 43.7 | 66.5 | 47.3 |[ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
+| SLaK-T | 300epochs/36epochs  | 51x51 | 51.3 | 70.0 | 55.7 | 44.3 | 67.2 | 48.1 | [Surf Drive] |
+
 
 We use MMSegmentation and MMDetection frameworks. Just clone MMSegmentation or MMDetection, and
 
