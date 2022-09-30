@@ -169,7 +169,7 @@ python -m torch.distributed.launch --nproc_per_node=8 main.py \
 We use MMSegmentation and MMDetection frameworks. Just clone MMSegmentation or MMDetection, and
 
 1. Put ```segmentation/slak.py``` into ```mmsegmentation/mmseg/models/backbones/``` or ```mmdetection/mmdet/models/backbones/```. The only difference between ```segmentation/slak.py``` and ```SLaK.py``` for ImageNet classification is the ```@BACKBONES.register_module```.
-2. Add RepLKNet into ```mmsegmentation/mmseg/models/backbones/__init__.py``` or ```mmdetection/mmdet/models/backbones/__init__.py```. That is
+2. Add SLaK into ```mmsegmentation/mmseg/models/backbones/__init__.py``` or ```mmdetection/mmdet/models/backbones/__init__.py```. That is
   ```
   ...
  from .slak import SLaK
