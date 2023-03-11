@@ -145,22 +145,19 @@ python -m torch.distributed.launch --nproc_per_node=8 main.py \
 
 | name | Configuration | kernel size |mIoU | #params | FLOPs | model |
 |:---:|:---:|:---:|:---:| :---:|:---:|:---:|
-| ConvNeXt-T | 120epochs/80K | 7x7 | 44.6 | 60M |  939G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
-| ConvNeXt-S | 120epochs/80K | 7x7 | 45.9 | 82M | 1027G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
-| SLaK-T     | 120epochs/80K  | 51x51 | 46.2 | 65M | 936G | [Surf Drive] |
 | ConvNeXt-T | 300epochs/160K | 7x7 | 46.0 | 60M | 939G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
-| SLaK-T | 300epochs/160K | 51x51 | 47.6 | 65M | 936G |  [Surf Drive] |
+| SLaK-T | 300epochs/160K | 51x51 | 47.6 | 65M | 936G |  [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/cc6Pqb7IZaecWMv/download) |
 | ConvNeXt-S | 300epochs/160K | 7x7 | 48.7 | 82M | 1027G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt) |
-| SLaK-S | 300epochs/160K | 51x51 | 49.4 | 91M | 1028G |  [Surf Drive] |
+| SLaK-S | 300epochs/160K | 51x51 | 49.4 | 91M | 1028G |  [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/HMLBXtKUDY6wyFF/download) |
 | ConvNeXt-B | 300epochs/160K | 7x7 | 49.1 | 122M | 1170G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
-| SLaK-B | 300epochs/160K | 51x51 | 50.0 | 135M | 1172G | [Surf Drive]|
+| SLaK-B | 300epochs/160K | 51x51 | 50.0 | 135M | 1172G | [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/JDZ6dMBMZDxUHQG/download)|
 
 ### Object detection and segmentation on MS COCO 
 
 | name | Configuration | kernel size |$AP^{box}$ | $AP^{box}_{50}$ | $AP^{box}_{75}$  | $AP^{mask}$ | $AP^{mask}_{50}$ |  $AP^{mask}_{75}$ |  model |
 |:---:|:---:|:---:|:---:| :---:|:---:|:---:|:---:|:---:|:---:|
 | ConvNeXt-T | 120epochs/12epochs  | 7x7 | 47.3 | 65.9 | 51.5 | 41.1 | 63.2 | 44.4 |[ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
-| SLaK-T | 120epochs/12epochs  | 51x51 | 48.4 | 67.2 | 52.5 | 41.8 | 64.4 | 45.2 | [Surf Drive] |
+| SLaK-T | 120epochs/12epochs  | 51x51 | 48.4 | 67.2 | 52.5 | 41.8 | 64.4 | 45.2 | [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/2IvPyGgSTT2RvPu/download) |
 | ConvNeXt-T | 300epochs/36epochs  | 7x7 | 50.4 | 69.1 | 54.8 | 43.7 | 66.5 | 47.3 |[ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
 | SLaK-T | 300epochs/36epochs  | 51x51 | 51.3 | 70.0 | 55.7 | 44.3 | 67.2 | 48.1 | [Surf Drive] |
 
