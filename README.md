@@ -152,7 +152,7 @@ python -m torch.distributed.launch --nproc_per_node=8 main.py \
 | ConvNeXt-B | 300epochs/160K | 7x7 | 49.1 | 122M | 1170G | [ConvNeXt](https://github.com/facebookresearch/ConvNeXt)  |
 | SLaK-B | 300epochs/160K | 51x51 | 50.0 | 135M | 1172G | [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/JDZ6dMBMZDxUHQG/download)|
 
-### Object detection and segmentation on MS COCO 
+### Object detection and segmentation on MS COCO: 120epochs/12epochs refers to 120 epochs of supervised training followed by 12 epochs of finetuning. 
 
 | name | Configuration | kernel size |$AP^{box}$ | $AP^{box}_{50}$ | $AP^{box}_{75}$  | $AP^{mask}$ | $AP^{mask}_{50}$ |  $AP^{mask}_{75}$ |  model |
 |:---:|:---:|:---:|:---:| :---:|:---:|:---:|:---:|:---:|:---:|
