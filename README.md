@@ -1,14 +1,21 @@
-# [[ICLR 2023] More ConvNets in the 2020s: Scaling up Kernels Beyond 51 × 51 using Sparsity](https://arxiv.org/abs/2207.03620)
+# Sparse Large Kernel Network - SLaK
 
-Official PyTorch implementation of **SLaK**, from the following paper: 
+Official PyTorch implementation of 
 
-[More ConvNets in the 2020s: Scaling up Kernels Beyond 51 x 51 using Sparsity](https://arxiv.org/abs/2207.03620)
+(1) [More ConvNets in the 2020s: Scaling up Kernels Beyond 51 x 51 using Sparsity](https://arxiv.org/abs/2207.03620), ICLR 2023. 
+
 
 [Shiwei Liu](https://shiweiliuiiiiiii.github.io/), [Tianlong Chen](https://tianlong-chen.github.io/about/), [Xiaohan Chen](http://www.xiaohanchen.com/), [Xuxi Chen](https://xxchen.site/), Qiao Xiao, Boqian Wu, [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Decebal Mocanu](https://people.utwente.nl/d.c.mocanu), [Zhangyang Wang](https://vita-group.github.io/)
 
-Eindhoven University of Technology, University of Texas at Austin, University of Twente
 
- [[`arXiv`](https://arxiv.org/pdf/2207.03620.pdf)] [[`Atlas Wang's talk`](https://drive.google.com/file/d/1_dqzEUARr2WgxGtSeGSRPsh1kufQAa-8/view)]
+[[`arXiv`](https://arxiv.org/pdf/2207.03620.pdf)] [[`Atlas Wang's talk`](https://drive.google.com/file/d/1_dqzEUARr2WgxGtSeGSRPsh1kufQAa-8/view)]
+ 
+ 
+(2) [Are Large Kernels  Better Teachers than Transformers for ConvNets?](), ICML 2023.
+
+[Tianjin Huang](https://tienjinhuang.github.io/), [Lu Yin](https://luuyin.com/), [Zhenyu Zhang](https://scholar.google.com/citations?user=ZLyJRxoAAAAJ&hl=zh-CN), [Li Shen](https://sites.google.com/site/mathshenli/home), [Meng Fang](https://mengf1.github.io/), [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Zhangyang Wang](https://vita-group.github.io/), [Shiwei Liu](https://shiweiliuiiiiiii.github.io/)
+
+[Coming Soon]
 
 --- 
 <p align="center">
