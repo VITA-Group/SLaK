@@ -5,7 +5,7 @@ Official PyTorch implementation of
 (1) [More ConvNets in the 2020s: Scaling up Kernels Beyond 51 x 51 using Sparsity](https://arxiv.org/abs/2207.03620), ICLR 2023. 
 
 
-[Shiwei Liu](https://shiweiliuiiiiiii.github.io/), [Tianlong Chen](https://tianlong-chen.github.io/about/), [Xiaohan Chen](http://www.xiaohanchen.com/), [Xuxi Chen](https://xxchen.site/), [Qiao Xiao](https://research.tue.nl/en/persons/qiao-xiao), Boqian Wu, [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Decebal Mocanu](https://people.utwente.nl/d.c.mocanu), [Zhangyang Wang](https://vita-group.github.io/)
+[Shiwei Liu](https://shiweiliuiiiiiii.github.io/), [Tianlong Chen](https://tianlong-chen.github.io/about/), [Xiaohan Chen](http://www.xiaohanchen.com/), [Xuxi Chen](https://xxchen.site/), [Qiao Xiao](https://research.tue.nl/en/persons/qiao-xiao), [Boqian Wu](https://people.utwente.nl/b.wu), [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Decebal Mocanu](https://people.utwente.nl/d.c.mocanu), [Zhangyang Wang](https://vita-group.github.io/)
 
 
 [[`arXiv`](https://arxiv.org/pdf/2207.03620.pdf)] [[`Atlas Wang's talk`](https://drive.google.com/file/d/1_dqzEUARr2WgxGtSeGSRPsh1kufQAa-8/view)]
