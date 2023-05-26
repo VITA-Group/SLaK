@@ -131,7 +131,7 @@ python -m torch.distributed.launch --nproc_per_node=16 main.py  \
 
 To run ConvNeXt, simple set the kernel size as --kernel_size 7 7 7 7 100. (Make sure that the last number is larger than the first four numbers)
 
-### Distilling SLaK-Small to ConNeXt-Small with 300 peoches
+### Distilling SLaK-Small to ConNeXt-Small with 300 epoches
 ```
 python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 --resume /path/to/SLaK-Small/checkpoint --Decom True --T 3.0 --width_factor 1.3 -u 2000 --distill_resume --lr_fd 3e-5 --epochs 300 --model SLaK_small --distill_type NKD --model_s SLaK_small --drop_path 0.1 --batch_size 64 --lr 4e-3 --update_freq 16 --model_ema true --model_ema_eval false \
@@ -139,7 +139,7 @@ python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 --kernel_size 51 49 47 13 5 --output_dir /path/to/save_results
 ```
 
-### Distilling SLaK-T to ConNeXt-T with 300 peoches
+### Distilling SLaK-T to ConNeXt-T with 300 epoches
 ```
 outdir=/gpfs/work3/0/prjste21060/projects/datasets/T3_bnTrue_NKD_STConvNext_300ep
 python -m torch.distributed.launch --nproc_per_node=4 main.py  \
