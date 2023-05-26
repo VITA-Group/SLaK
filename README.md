@@ -55,8 +55,8 @@ We propose **SLaK**, a pure ConvNet model that for the first time is able to sca
 
 | name | resolution | kernel size |acc@1 | #params | FLOPs | model |
 |:---:|:---:|:---:|:---:| :---:|:---:|:---:|
-| ConvNeXt L2S-T | 224x224 | 7x7 | 83.1 | 29M | 4.5G | [Surf Drive] |
-| ConvNeXt L2S-S | 224x224 | 7x7 | 84.3 | 50M | 8.7G | [Surf Drive] |
+| ConvNeXt L2S-T | 224x224 | 7x7 | 83.1 | 29M | 4.5G | [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/cR6KLvxjlUshUQA) |
+| ConvNeXt L2S-S | 224x224 | 7x7 | 84.3 | 50M | 8.7G | [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/PYqL3rVff3Nu2sP) |
 
 
 ## Installation
