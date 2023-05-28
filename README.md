@@ -13,9 +13,8 @@ Official PyTorch implementation of
  
 (2) [Are Large Kernels  Better Teachers than Transformers for ConvNets?](), ICML 2023.
 
-[Tianjin Huang](https://tienjinhuang.github.io/), [Lu Yin](https://luuyin.com/), [Zhenyu Zhang](https://scholar.google.com/citations?user=ZLyJRxoAAAAJ&hl=zh-CN), [Li Shen](https://sites.google.com/site/mathshenli/home), [Meng Fang](https://mengf1.github.io/), [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Zhangyang Wang](https://vita-group.github.io/), [Shiwei Liu](https://shiweiliuiiiiiii.github.io/)
+[Tianjin Huang](https://tienjinhuang.github.io/), [Lu Yin](https://luuyin.com/), [Zhenyu Zhang](https://scholar.google.com/citations?user=ZLyJRxoAAAAJ&hl=zh-CN), [Li Shen](https://sites.google.com/site/mathshenli/home), [Meng Fang](https://mengf1.github.io/), [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Zhangyang Wang](https://vita-group.github.io/), [Shiwei Liu](https://shiweiliuiiiiiii.github.io/) 
 
-[Coming Soon]
 
 --- 
 <p align="center">
@@ -131,7 +130,10 @@ python -m torch.distributed.launch --nproc_per_node=16 main.py  \
 
 To run ConvNeXt, simple set the kernel size as --kernel_size 7 7 7 7 100. (Make sure that the last number is larger than the first four numbers)
 
-### Distilling SLaK-Small to ConNeXt-Small with NKD, 300 epoches
+
+## Training code for large-kernel distillation
+
+### Distilling SLaK-S to ConNeXt-S with NKD, 300 epoches
 ```
 python -m torch.distributed.launch --nproc_per_node=4 main.py  \
 --resume /path/to/SLaK-Small/checkpoint --Decom True --T 3.0 --width_factor 1.3 -u 2000 --distill_resume --lr_fd 3e-5 --epochs 300 --model SLaK_small --distill_type NKD --model_s SLaK_small --drop_path 0.1 --batch_size 64 --lr 4e-3 --update_freq 16 --model_ema true --model_ema_eval false \
