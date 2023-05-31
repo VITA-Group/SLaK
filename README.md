@@ -27,19 +27,11 @@ We propose **SLaK**, a pure ConvNet model that for the first time is able to sca
 Table of contents
 * [Installation](#Installation)
 * [Training of SLaK](#ImageNet-1K-SLaK-T-on-a-single-machine)
-* [Evaluated Sparse Algorithms](#sparse-algorithms)
-* [Tasks, Datasets, and Models](#tasks-models-and-datasets)
-* [Results](#results)
---- 
+* [Downstream Transfer Code for Semantic Segmentation and Object Detection](#Semantic-Segmentation-and-Object-Detection)
+* [Results of SLaK](Results-and-ImageNet-1K-trained-models)
+* [Training of large-2-small kernel distillation](#ImageNet-1K-SLaK-T-on-a-single-machine)
+* [Results of large-2-small kernel Distillation](#ConvNeXt-distilled-from-SLaK-via-large-2-small-kernel-distillation-on-ImageNet-1K-for-300-epochs)
 
-
-## Catalog
-- [√] ImageNet-1K Training Code   
-- [√] ImageNet-1K Fine-tuning Code  
-- [√] Downstream Transfer (Detection, Segmentation) Code
-
-
-<!-- ✅ ⬜️  -->
 
 ## Results and ImageNet-1K trained models
 
