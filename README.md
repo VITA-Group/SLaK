@@ -26,11 +26,11 @@ We propose **SLaK**, a pure ConvNet model that for the first time is able to sca
 
 Table of contents
 * [Installation](#Installation)
+* [Results of SLaK](#Results-and-ImageNet-1K-trained-models)
+* [Results of large-2-small kernel Distillation](#ConvNeXt-distilled-from-SLaK-via-large-2-small-kernel-distillation-on-ImageNet-1K-for-300-epochs)
 * [Training of SLaK](#ImageNet-1K-SLaK-T-on-a-single-machine)
 * [Downstream Transfer Code for Semantic Segmentation and Object Detection](#Semantic-Segmentation-and-Object-Detection)
-* [Results of SLaK](Results-and-ImageNet-1K-trained-models)
-* [Training of large-2-small kernel distillation](#ImageNet-1K-SLaK-T-on-a-single-machine)
-* [Results of large-2-small kernel Distillation](#ConvNeXt-distilled-from-SLaK-via-large-2-small-kernel-distillation-on-ImageNet-1K-for-300-epochs)
+* [Training of large-2-small kernel distillation](#Training-code-for-large-kernel-distillation)
 
 
 ## Results and ImageNet-1K trained models
@@ -239,8 +239,6 @@ We have provided the saved matrices and source code to help reproduce. To reprod
 python erf/erf_slak51_convnext7_convnext31.py
 ```
 
-
-## More information will come soon.
 
 ## Acknowledgement
 The released PyTorch training script is based on the code of [ConvNeXt](https://github.com/facebookresearch/ConvNeXt) and [RepLKNet](https://github.com/DingXiaoH/RepLKNet-pytorch), which were built using the [timm](https://github.com/rwightman/pytorch-image-models) library, [DeiT](https://github.com/facebookresearch/deit) and [BEiT](https://github.com/microsoft/unilm/tree/master/beit) repositories. 
