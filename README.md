@@ -24,6 +24,15 @@ Official PyTorch implementation of
 We propose **SLaK**, a pure ConvNet model that for the first time is able to scale the convolutional kernels beyond 51x51.
 
 
+Table of contents
+* [Installation](#Installation)
+* [Training of SLaK](#ImageNet-1K-SLaK-T-on-a-single-machine)
+* [Evaluated Sparse Algorithms](#sparse-algorithms)
+* [Tasks, Datasets, and Models](#tasks-models-and-datasets)
+* [Results](#results)
+--- 
+
+
 ## Catalog
 - [√] ImageNet-1K Training Code   
 - [√] ImageNet-1K Fine-tuning Code  
