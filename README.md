@@ -11,7 +11,7 @@ Official PyTorch implementation of
 [[`arXiv`](https://arxiv.org/pdf/2207.03620.pdf)] [[`Atlas Wang's talk`](https://drive.google.com/file/d/1_dqzEUARr2WgxGtSeGSRPsh1kufQAa-8/view)]
  
  
-(2) [Are Large Kernels  Better Teachers than Transformers for ConvNets?](), ICML 2023.
+(2) [Are Large Kernels  Better Teachers than Transformers for ConvNets?](https://arxiv.org/pdf/2305.19412.pdf), ICML 2023.
 
 [Tianjin Huang](https://tienjinhuang.github.io/), [Lu Yin](https://luuyin.com/), [Zhenyu Zhang](https://scholar.google.com/citations?user=ZLyJRxoAAAAJ&hl=zh-CN), [Li Shen](https://sites.google.com/site/mathshenli/home), [Meng Fang](https://mengf1.github.io/), [Mykola Pechenizkiy](https://www.win.tue.nl/~mpechen/), [Zhangyang Wang](https://vita-group.github.io/), [Shiwei Liu](https://shiweiliuiiiiiii.github.io/) 
 
