@@ -136,7 +136,7 @@ To run ConvNeXt, simple set the kernel size as --kernel_size 7 7 7 7 100. (Make 
 
 ### Distilling SLaK-S to ConNeXt-S with NKD, 300 epoches
 ```
-python -m torch.distributed.launch --nproc_per_node=4 main_kd.py  \
+python -m torch.distributed.launch --nproc_per_node=4 main_KD.py  \
 --resume /path/to/SLaK-Small/checkpoint --Decom True --T 3.0 --width_factor 1.3 -u 2000 --distill_resume --lr_fd 3e-5 --epochs 300 --model SLaK_small --distill_type NKD --model_s SLaK_small --drop_path 0.1 --batch_size 64 --lr 4e-3 --update_freq 16 --model_ema true --model_ema_eval false \
 --data_path /path/to/imagenet-1k --num_workers 40 \
 --kernel_size 51 49 47 13 5 --output_dir /path/to/save_results
@@ -145,7 +145,7 @@ python -m torch.distributed.launch --nproc_per_node=4 main_kd.py  \
 ### Distilling SLaK-T to ConNeXt-T with NKD, 300 epoches
 ```
 outdir=/gpfs/work3/0/prjste21060/projects/datasets/T3_bnTrue_NKD_STConvNext_300ep
-python -m torch.distributed.launch --nproc_per_node=4 main_kd.py  \
+python -m torch.distributed.launch --nproc_per_node=4 main_KD.py  \
 --resume /path/to/SLaK-tiny/checkpoint --Decom True --T 3.0 --width_factor 1.3 -u 2000 --lr_fd 3e-5 --epochs 300 --model SLaK_tiny --distill_resume --distill_type NKD --model_s SLaK_tiny --drop_path 0.1 --batch_size 64 --lr 4e-3 --update_freq 8 --model_ema true --model_ema_eval false \
 --data_path /path/to/imagenet-1k --num_workers 40 \
 --kernel_size 51 49 47 13 5 --output_dir /path/to/save_results
