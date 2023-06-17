@@ -39,6 +39,9 @@ Table of contents
 
 | name | resolution | kernel size |acc@1 | #params | FLOPs | model |
 |:---:|:---:|:---:|:---:| :---:|:---:|:---:|
+| ConvNeXt-T | 224x224 | 7x7 | 82.1 | 29M | 4.5G | [ConvNeXt](hhttps://github.com/facebookresearch/ConvNeXt) |
+| ConvNeXt-S | 224x224 | 7x7 | 83.1 | 50M | 8.7G | [ConvNeXt](hhttps://github.com/facebookresearch/ConvNeXt) |
+| ConvNeXt-B | 224x224 | 7x7 | 83.8 | 89M | 15.4G | [ConvNeXt](hhttps://github.com/facebookresearch/ConvNeXt) |
 | SLaK-T | 224x224 | 51x51 |82.5 | 30M | 5.0G | [Google Drive](https://drive.google.com/file/d/1Iut2f5FMS_77jGPYoUJDQzDIXOsax1u4/view?usp=sharing) |
 | SLaK-S | 224x224 | 51x51 | 83.8 | 55M | 9.8G |  [Google Drive](https://drive.google.com/file/d/1etM6KQbnlsgDAZ37adsQJ3UI8Bbv2AVe/view?usp=sharing) |
 | SLaK-B | 224x224 | 51x51 | 84.0 | 95M | 17.1G |  [Google Drive](https://drive.google.com/file/d/1duUxUD3RSblQ6eDHd0n-u0aulwGypf1j/view?usp=sharing) |
@@ -55,6 +58,8 @@ Table of contents
 
 | name | resolution | kernel size |acc@1 | #params | FLOPs | model |
 |:---:|:---:|:---:|:---:| :---:|:---:|:---:|
+| ConvNeXt-T | 224x224 | 7x7 | 82.1 | 29M | 4.5G | [ConvNeXt](hhttps://github.com/facebookresearch/ConvNeXt) |
+| ConvNeXt-S | 224x224 | 7x7 | 83.1 | 50M | 8.7G | [ConvNeXt](hhttps://github.com/facebookresearch/ConvNeXt) |
 | ConvNeXt L2S-T | 224x224 | 7x7 | 83.1 | 29M | 4.5G | [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/cR6KLvxjlUshUQA) |
 | ConvNeXt L2S-S | 224x224 | 7x7 | 84.3 | 50M | 8.7G | [Surf Drive](https://surfdrive.surf.nl/files/index.php/s/PYqL3rVff3Nu2sP) |
 
